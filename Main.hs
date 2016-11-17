@@ -7,7 +7,7 @@ import Data.Text (Text, pack)
 import Data.Time.Clock (NominalDiffTime, getCurrentTime)
 
 width :: Int
-width =  200
+width =  1000
 
 svgns :: Maybe Text
 svgns = Just "http://www.w3.org/2000/svg"
@@ -20,7 +20,7 @@ circleAttrs x =
 
 boxAttrs :: Map Text Text
 boxAttrs = 
-    let scale = 20
+    let scale = 10
     in fromList [ ("width" , pack $ show (width*scale))
                 , ("height", pack $ show scale)
                 , ("viewBox", pack ("-0.5 -0.5 " ++ show width ++ " 1"))
