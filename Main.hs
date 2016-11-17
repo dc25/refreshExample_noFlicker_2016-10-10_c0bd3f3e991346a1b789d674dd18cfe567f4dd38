@@ -33,11 +33,15 @@ showCircle _ dx = do
     elDynAttrNS' svgns "circle" dAttrs $ return ()
     return ()
 
+
+noChange :: b -> a -> a
+noChange = flip const
+
 main :: IO ()
 main = mainWidget $ do
            let attrs = constDyn boxAttrs
                initial = fromList [(x,x) | x <- [0..width-1]]
            tickEvent <- tickLossy 2 =<< liftIO getCurrentTime
-           dCircles <- foldDyn (flip const) initial tickEvent
+           dCircles <- foldDyn noChange initial tickEvent
            elDynAttrNS' svgns "svg" attrs $ listWithKey dCircles showCircle
            return ()
